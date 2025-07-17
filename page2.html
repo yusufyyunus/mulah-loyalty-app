@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MULAHRewards - Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="m_logo.png" alt="MULAH Logo" class="logo">
+            <h1>Registration</h1>
+            <p class="subtitle-small">Please fill up your details.</p>
+        </header>
+        <main>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter Name">
+                <p class="error-message" id="nameError">*Please insert a name.</p>
+            </div>
+
+            <div class="form-group">
+                <label>Birthday</label>
+                <div class="birthday-inputs">
+                    <input type="number" id="dd" placeholder="DD" maxlength="2" min="1" max="31">
+                    <input type="number" id="mm" placeholder="MM" maxlength="2" min="1" max="12">
+                    <input type="number" id="yyyy" placeholder="YYYY" maxlength="4" min="1900" max="2025">
+                </div>
+                <p class="error-message" id="birthdayError">*Please insert your birthday.</p>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Email Address">
+                <p class="error-message" id="emailError">*Please insert a valid email address.</p>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="noEmail">
+                    <label for="noEmail">No email address</label>
+                </div>
+            </div>
+
+            <button id="continueBtn" class="btn">Continue</button>
+        </main>
+        <footer>
+            <p>Powered by <a href="https://mulahrewards.com">MulahRewards.com</a></p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('continueBtn').addEventListener('click', function() {
+            const name = document.getElementById('name').value.trim();
+            const dd = document.getElementById('dd').value.trim();
+            const mm = document.getElementById('mm').value.trim();
+            const yyyy = document.getElementById('yyyy').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const noEmailChecked = document.getElementById('noEmail').checked;
+
+            let isValid = true;
+
+            // Reset error messages
+            document.getElementById('nameError').style.display = 'none';
+            document.getElementById('birthdayError').style.display = 'none';
+            document.getElementById('emailError').style.display = 'none';
+
+            if (name === '') {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (dd === '' || mm === '' || yyyy === '' || !isValidDate(parseInt(yyyy), parseInt(mm), parseInt(dd))) {
+                document.getElementById('birthdayError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!noEmailChecked && (email === '' || !isValidEmail(email))) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                sessionStorage.setItem('userName', name);
+                sessionStorage.setItem('userBirthday', `${dd}/${mm}/${yyyy}`);
+                sessionStorage.setItem('userEmail', noEmailChecked ? 'N/A' : email);
+                window.location.href = 'page3.html';
+            }
+        });
+
+        document.getElementById('noEmail').addEventListener('change', function() {
+            const emailInput = document.getElementById('email');
+            if (this.checked) {
+                emailInput.value = '';
+                emailInput.disabled = true;
+                document.getElementById('emailError').style.display = 'none';
+            } else {
+                emailInput.disabled = false;
+            }
+        });
+
+        function isValidEmail(email) {
+            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function isValidDate(year, month, day) {
+            if (isNaN(year) || isNaN(month) || isNaN(day)) return false;
+            const date = new Date(year, month - 1, day);
+            return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+        }
+
+        // Allow only numerical input for birthday fields and limit length
+        document.getElementById('dd').addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2);
+        });
+        document.getElementById('mm').addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2);
+        });
+        document.getElementById('yyyy').addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4);
+        });
+    </script>
+</body>
+</html>

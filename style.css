@@ -1,0 +1,308 @@
+/* General Body and Container Styling */
+body {
+    font-family: 'Open Sans', sans-serif; /* General text font */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5; /* Very light grey background */
+    color: #333;
+    overflow: hidden; /* Prevent scrolling if content slightly exceeds */
+}
+
+.container {
+    width: 640px; /* Exact width as specified */
+    height: 1136px; /* Exact height as specified */
+    background-color: #ffffff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes header/main/footer apart */
+    padding: 60px 40px 40px 40px; /* Top, Right, Bottom, Left padding based on image */
+    box-sizing: border-box; /* Include padding in width/height */
+}
+
+/* Header Styling */
+header {
+    text-align: center; /* Default center, but individual elements will be left-aligned */
+    margin-bottom: auto; /* Push main content down */
+}
+
+/* Logo Styling */
+.logo { /* This targets your <img class="logo"> */
+    width: 250px; /* Adjust size based on visual estimation from image */
+    height: auto;
+    display: block; /* Make it a block element to center with margins */
+    margin: 0 auto; /* Center the logo horizontally */
+    margin-bottom: 120px; /* Space below logo to match the image */
+    margin-top: 0; /* Align top of container */
+}
+
+/* H1 Styling - For both "Hello," and "Welcome !" */
+h1 {
+    font-family: 'Playfair Display', serif; /* Serif font for main headings */
+    font-weight: 400; /* Regular weight */
+    font-size: 80px; /* Large font size */
+    color: #585858; /* Dark grey for heading */
+    line-height: 1.1; /* Tighter line height */
+    text-align: left; /* Align to the left as per image */
+    margin: 0; /* Remove default margins */
+    padding: 0; /* Remove default padding */
+    margin-left: 0; /* Ensure left alignment */
+    margin-right: auto; /* Ensure left alignment */
+    width: fit-content; /* Allows text to wrap naturally if needed, but primarily for alignment */
+}
+
+/* Specific margin for the second H1 to bring it closer to the first */
+h1 + h1 { /* Selects an h1 that immediately follows another h1 */
+    margin-top: -15px; /* Adjust this value to control vertical spacing between "Hello," and "Welcome !" */
+}
+
+/* Subtitle Styling */
+.subtitle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 25px; /* Slightly smaller for subtitle */
+    color: #fe873c; /* Orange color */
+    font-weight: 600; /* Semi-bold */
+    margin-top: 100px; /* Space from the "Welcome !" H1 */
+    line-height: 1; /* Ensure single line by keeping line-height tight */
+    text-align: left; /* Align subtitle to the left */
+    margin-left: 0; /* Ensure left alignment */
+    margin-right: auto; /* Ensure left alignment */
+    margin-bottom: 80px; /* Space between subtitle and input group */
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    overflow: hidden; /* Hide overflowing content */
+    text-overflow: ellipsis; /* Add ellipsis if content overflows (optional, but good practice) */
+}
+
+.subtitle-small { /* For Page 2 (Registration) */
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px; /* Smaller subtitle for registration */
+    color: #888; /* Lighter grey */
+    font-weight: 400;
+    margin-top: 15px;
+    text-align: left;
+    margin-left: 0;
+    margin-right: auto;
+    margin-bottom: 50px; /* Space before first form group */
+}
+
+/* Main Content Styling */
+main {
+    flex-grow: 1; /* Allow main to take available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to the start (top) of the main area */
+    padding-bottom: 30px; /* Padding above button/footer */
+}
+
+/* Page 1 Specific Styles - Re-designed for line-only input */
+.phone-input-group {
+    display: flex;
+    overflow: hidden;
+    height: 90px; /* Maintain height */
+    margin-bottom: 50px; /* Space below input group */
+    align-items: flex-end; /* Align items to the bottom to make line appear under text */
+    padding-bottom: 10px; /* Adjusted padding so line isn't directly on text - increased from 5px */
+}
+
+.country-code {
+    background-color: transparent;
+    padding: 0 30px 0 0;
+    display: flex;
+    align-items: center;
+    font-size: 28px; /* Made +60 font size smaller */
+    color: #555;
+    border-right: none;
+    border-bottom: 1px solid #fe873c; /* Orange line */
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.dropdown-arrow {
+    margin-left: 15px;
+    font-size: 20px;
+    color: #999;
+}
+
+.phone-input-wrapper {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-end;
+    padding-right: 25px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#mobileNumber {
+    border: none;
+    padding: 0 0 10px 25px; /* Increased padding-bottom from 5px to 10px */
+    font-size: 32px;
+    flex-grow: 1;
+    outline: none;
+    color: #555;
+    font-family: 'Open Sans', sans-serif;
+    border-bottom: 1px solid #fe873c; /* Orange line */
+    background-color: transparent;
+}
+
+#mobileNumber::placeholder {
+    font-size: 25px;
+    color: #bbb;
+}
+
+.check-icon {
+    color: #4CAF50;
+    font-size: 32px;
+    margin-left: 15px;
+    align-self: flex-end;
+    padding-bottom: 10px;
+}
+
+/* Button Styling (Page 1, Page 2, Page 3) */
+.btn {
+    background-color: #fe873c;
+    color: #fff;
+    padding: 30px 40px;
+    border: none;
+    border-radius: 45px; 
+    font-size: 38px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    margin-top: auto;
+}
+
+.btn:hover {
+    background-color: #e6752d;
+}
+
+/* Page 2 Specific Styles */
+.form-group {
+    margin-bottom: 45px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 30px;
+    color: #585858;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.birthday-inputs input {
+    width: 100%;
+    padding: 25px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 30px;
+    box-sizing: border-box;
+    outline: none;
+    color: #555;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.form-group input::placeholder,
+.birthday-inputs input::placeholder {
+    color: #bbb;
+}
+
+.disabled-input {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #f44336;
+    font-size: 26px;
+    margin-top: 10px;
+    font-style: italic;
+    display: none;
+    text-align: left;
+}
+
+.birthday-inputs {
+    display: flex;
+    gap: 20px;
+}
+
+.birthday-inputs input {
+    flex: 1;
+    text-align: center;
+}
+
+/* Checkbox Styling */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    font-size: 28px;
+    color: #777;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+/* Page 3 Specific Styles */
+.details-display {
+    background-color: #fcfcfc;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 50px;
+    margin-top: 30px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.details-display p {
+    font-size: 32px;
+    margin-bottom: 25px; 
+    color: #444;
+    line-height: 1.4;
+}
+
+.details-display p:last-child {
+    margin-bottom: 0;
+}
+
+.details-display strong {
+    color: #fe873c; 
+    display: block; 
+    width: auto; 
+    font-weight: 600;
+    margin-bottom: 10px; 
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    font-size: 28px;
+    color: #999;
+    margin-top: auto;
+}
+
+footer a {
+    color: #0041c2;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Footer Separator Line */
+.footer-separator {
+    width: 100%;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 40px 0 30px 0;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MULAHRewards - Check Loyalty Points</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="m_logo.png" alt="MULAH Logo" class="logo">
+            <h1>Hello, </h1>
+            <h1>Welcome !</h1>
+            <p class="subtitle">Check Your Loyalty Points & Rewards</p>
+        </header>
+        <main>
+            <div class="phone-input-group">
+                <div class="country-code">
+                    <span>+60</span>
+                    <span class="dropdown-arrow">&#9660;</span>
+                </div>
+                <div class="phone-input-wrapper">
+                    <input type="tel" id="mobileNumber" placeholder="Enter your mobile number" maxlength="15">
+                    <span class="check-icon">&#10003;</span>
+                </div>
+            </div>
+            <button id="checkLoyaltyPoints" class="btn">Check Loyalty Points</button>
+        </main>
+
+        <div class="footer-separator"></div>
+
+
+        <footer>
+            <p>Powered by <a href="https://mulahrewards.com">MulahRewards.com</a></p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('mobileNumber').addEventListener('input', function(event) {
+            this.value = this.value.replace(/[^0-9]/g, ''); // Allow only numerical input
+        });
+
+        document.getElementById('checkLoyaltyPoints').addEventListener('click', function() {
+            const mobileNumber = document.getElementById('mobileNumber').value;
+            // The task specifies "+60173527250". Given the fixed "+60" in the UI,
+            // we should check for "173527250" in the input field.
+            if (mobileNumber === '173527250') {
+                sessionStorage.setItem('phoneNumber', '+60' + mobileNumber);
+                window.location.href = 'page2.html';
+            } else {
+                alert('Invalid mobile number. Please enter 173527250 (after the +60) to proceed.');
+            }
+        });
+    </script>
+</body>
+</html>

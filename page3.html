@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MULAHRewards - Your Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="m_logo.png" alt="MULAH Logo" class="logo">
+            <h1>Your Details</h1>
+            <p class="subtitle-small">Here's the information you provided:</p>
+        </header>
+        <main>
+            <div class="details-display">
+                <p><strong>Phone Number:</strong> <span id="displayPhoneNumber"></span></p>
+                <p><strong>Name:</strong> <span id="displayName"></span></p>
+                <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+                <p><strong>Birthday:</strong> <span id="displayBirthday"></span></p>
+            </div>
+            <button class="btn" onclick="window.location.href='index.html'">Back to Home</button>
+        </main>
+        <footer>
+            <p>Powered by <a href="https://mulahrewards.com">MulahRewards.com</a></p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('displayPhoneNumber').textContent = sessionStorage.getItem('phoneNumber') || 'N/A';
+            document.getElementById('displayName').textContent = sessionStorage.getItem('userName') || 'N/A';
+            document.getElementById('displayEmail').textContent = sessionStorage.getItem('userEmail') || 'N/A';
+            document.getElementById('displayBirthday').textContent = sessionStorage.getItem('userBirthday') || 'N/A';
+        });
+    </script>
+</body>
+</html>
